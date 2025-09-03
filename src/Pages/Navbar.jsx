@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Search, User, Menu, MapPin, ChevronDown, Folders} from "lucide-react";
-
+  import { FaRss } from 'react-icons/fa';
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("For You"); 
   const menuItems = ["For You", "Events", "Activities", "Plays", "Sports", "Feeds"];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 items-center">
+    <nav className="fixed top-0 left-0 w-full z-50 items-center md:bg-transparent">
       
       <div className="md:hidden bg-[#0a0a0a] text-white py-3 px-4">
         
@@ -26,7 +26,7 @@ const Navbar = () => {
           
           <div className="flex items-center space-x-6">
             <div className="flex items-center">
-  <Folders size={22} className="cursor-pointer" />
+  <FaRss size={22} className="cursor-pointer" />
 </div>
             <img
               src="https://i.pravatar.cc/50"

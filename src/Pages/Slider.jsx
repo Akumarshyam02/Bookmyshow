@@ -34,7 +34,7 @@ export default function Slider() {
         {banners.map((banner, i) => (
           <SwiperSlide className="overflow-hidden" key={i}>
             <div
-              className="h-full w-full mx-auto bg-cover bg-center relative rounded-2xl overflow-hidden"
+              className="h-full w-full mx-auto bg-cover bg-center relative  overflow-hidden"
               style={{ backgroundImage: `url(${banner.img})` }}
             >
               <div className="absolute inset-0 bg-black/50"></div>
