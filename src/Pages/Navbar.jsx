@@ -6,7 +6,7 @@ const Navbar = () => {
   const menuItems = ["For You", "Events", "Activities", "Plays", "Sports", "Feeds"];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 items-center md:bg-transparent">
+    <nav className="fixed top-0 left-0 w-full z-50 items-center ">
       
       <div className="md:hidden bg-[#0a0a0a] text-white py-3 px-4">
         
@@ -52,7 +52,7 @@ const Navbar = () => {
       
       <div
         className="hidden md:flex justify-between items-center w-full 
-                   px-6 py-3 backdrop-blur-md text-white font-[Amazon Ember,Arial,sans-serif] 
+                   px-6 py-3  text-white font-[Amazon Ember,Arial,sans-serif] 
                    text-[17px] font-medium"
       >
         <div className="flex items-center space-x-20">
