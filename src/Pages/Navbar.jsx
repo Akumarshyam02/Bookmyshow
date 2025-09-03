@@ -1,9 +1,12 @@
-import React from "react";
-import { Search, User, Menu, MapPin, ChevronDown, QrCode } from "lucide-react";
+import React, { useState } from "react";
+import { Search, User, Menu, MapPin, ChevronDown, Folders} from "lucide-react";
 
 const Navbar = () => {
+  const [activeTab, setActiveTab] = useState("For You"); 
+  const menuItems = ["For You", "Events", "Activities", "Plays", "Sports", "Feeds"];
+
   return (
-    <nav className="fixed top-0 left-0 w-full z-50">
+    <nav className="fixed top-0 left-0 w-full z-50 items-center">
       
       <div className="md:hidden bg-[#0a0a0a] text-white py-3 px-4">
         
@@ -21,8 +24,10 @@ const Navbar = () => {
           </div>
 
           
-          <div className="flex items-center space-x-4">
-            <QrCode size={22} />
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center">
+  <Folders size={22} className="cursor-pointer" />
+</div>
             <img
               src="https://i.pravatar.cc/50"
               alt="Profile"
@@ -45,44 +50,48 @@ const Navbar = () => {
       </div>
 
       
-      <div className="hidden md:flex justify-between items-center w-full mt-6 
-                      px-6 py-3 backdrop-blur-md text-white font-[Amazon Ember,Arial,sans-serif] 
-                      text-[20px] font-bold">
+      <div
+        className="hidden md:flex justify-between items-center w-full 
+                   px-6 py-3 backdrop-blur-md text-white font-[Amazon Ember,Arial,sans-serif] 
+                   text-[17px] font-medium"
+      >
         <div className="flex items-center space-x-20">
+        
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
             alt="Prime Logo"
-            className="h-8 block max-w-full overflow-hidden hover:bg-white hover:text-black 
-                       px-2 py-2 rounded cursor-pointer"
+            className="h-12 block max-w-full overflow-hidden"
           />
 
         
-          <div className="flex space-x-6">
-            {["For You", "Events", "Activities", "Plays", "Sports", "Feeds"].map(
-              (item, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="block max-w-full overflow-hidden hover:bg-white hover:text-black 
-                             px-2 py-2 rounded cursor-pointer"
-                >
-                  {item}
-                </a>
-              )
-            )}
+          <div className="flex items-center space-x-6 whitespace-nowrap">
+            {menuItems.map((item, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(item)}
+                className={`px-2 py-2 rounded cursor-pointer transition 
+                  ${
+                    activeTab === item
+                      ? "bg-[#4e5a65] bg-transparency text-white" 
+                      : "hover:bg-white hover:text-black"
+                  }`}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
 
         
-        <div className="flex items-center space-x-10 font-bold">
-          <button className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer">
-            <Search size={25} />
+        <div className="flex items-center space-x-5 font-medium">
+          <button className="hover:bg-white hover:text-black px-2 py-2 rounded-4xl cursor-pointer">
+            <Search size={22} />
           </button>
           <button className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer">
-            <User size={25} />
+            <User size={22} />
           </button>
           <button className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer">
-            <Menu size={26} />
+            <Menu size={22} />
           </button>
         </div>
       </div>

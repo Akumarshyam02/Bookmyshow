@@ -23,7 +23,7 @@ export default function Slider() {
   ];
 
   return (
-    <div className="relative w-full h-[70vh]">
+    <div className="relative w-full h-[70vh] group">
       <Swiper
         modules={[Navigation, Autoplay]}
         navigation
@@ -32,15 +32,13 @@ export default function Slider() {
         className="h-full"
       >
         {banners.map((banner, i) => (
-          <SwiperSlide key={i}>
+          <SwiperSlide className="overflow-hidden" key={i}>
             <div
-              className="h-full w-[80%] mx-auto bg-cover bg-center relative rounded-2xl overflow-hidden"
+              className="h-full w-full mx-auto bg-cover bg-center relative rounded-2xl overflow-hidden"
               style={{ backgroundImage: `url(${banner.img})` }}
             >
-              
               <div className="absolute inset-0 bg-black/50"></div>
 
-              
               <div className="absolute bottom-20 left-12 max-w-xl text-white space-y-4">
                 <h2 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
                   {banner.title}
@@ -54,6 +52,30 @@ export default function Slider() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      
+      <style>
+        {`
+          .swiper-button-next,
+          .swiper-button-prev {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 30px;
+            height: 30px;
+          }
+
+          .swiper-button-next::after,
+          .swiper-button-prev::after {
+            font-size: 22px;
+            color: #fff;
+          }
+
+          .group:hover .swiper-button-next,
+          .group:hover .swiper-button-prev {
+            opacity: 1;
+          }
+        `}
+      </style>
     </div>
   );
 }
