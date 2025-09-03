@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Search, User, Menu, MapPin, ChevronDown, Folders} from "lucide-react";
   import { FaRss } from 'react-icons/fa';
+  
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("For You"); 
   const menuItems = ["For You", "Events", "Activities", "Plays", "Sports", "Feeds"];
+  
+const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 items-center ">
@@ -51,10 +68,9 @@ const Navbar = () => {
 
       
       <div
-        className="hidden md:flex justify-between items-center w-full 
-                   px-6 py-3  text-white font-[Amazon Ember,Arial,sans-serif] 
-                   text-[17px] font-medium"
-      >
+       className={`hidden md:flex justify-between items-center w-full px-6 py-3 text-white font-[Amazon Ember,Arial,sans-serif] text-[17px] font-medium 
+    ${scrolled ? "bg-[#0a0a0a]/70 backdrop-blur-md shadow-md" : "bg-transparent"}`}
+>
         <div className="flex items-center space-x-20">
         
           <img
