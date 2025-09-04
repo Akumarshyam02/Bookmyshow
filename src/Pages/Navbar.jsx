@@ -1,11 +1,14 @@
 import React, { useState, useEffect} from "react";
-import { Search, User, Menu, MapPin, ChevronDown, Folders} from "lucide-react";
-  import { FaRss } from 'react-icons/fa';
-  
+import { Search, User, Menu, MapPin, ChevronDown} from "lucide-react";
+  import { FaBell} from 'react-icons/fa';
+  import { FaLocationDot } from "react-icons/fa6";
+
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("For You"); 
   const menuItems = ["For You", "Events", "Activities", "Plays", "Sports", "Feeds"];
   
+    const [isSearchOpen, setIsSearchOpen] = useState(false); 
+
 const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -30,7 +33,7 @@ const [scrolled, setScrolled] = useState(false);
         <div className="flex justify-between items-center">
           
           <div className="flex items-center space-x-2">
-            <MapPin size={20} className="text-white" />
+            <FaLocationDot  size={20} className="text-white" />
             <div>
               <div className="flex items-center space-x-1">
                 <span className="font-semibold text-lg">Patna</span>
@@ -43,7 +46,7 @@ const [scrolled, setScrolled] = useState(false);
           
           <div className="flex items-center space-x-6">
             <div className="flex items-center">
-  <FaRss size={22} className="cursor-pointer" />
+  <FaBell size={22} className="cursor-pointer" />
 </div>
             <img
               src="https://i.pravatar.cc/50"
@@ -100,16 +103,58 @@ const [scrolled, setScrolled] = useState(false);
 
         
         <div className="flex items-center space-x-5 font-medium">
-          <button className="hover:bg-white hover:text-black px-2 py-2 rounded-4xl cursor-pointer">
+           <button
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer"
+          >
             <Search size={22} />
           </button>
-          <button className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer">
-            <User size={22} />
-          </button>
-          <button className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer">
+          <button className="bg-gradient-to-r from-[#1A98FF] to-[#4facfe]  text-amber-50 w-10 h-10 flex items-center justify-center 
+                   rounded-full cursor-pointer hover:bg-gray-200">
+  <User size={22} />
+</button>
+
+          <button className="hover:bg-[rgb(26,152,255)] hover:text-black px-2 py-2 rounded cursor-pointer">
             <Menu size={22} />
           </button>
+
         </div>
+{isSearchOpen && (
+  <>
+    
+    <div
+      className="fixed inset-0 bg-black/40"
+      onClick={() => setIsSearchOpen(false)} 
+    ></div>
+
+    
+    <div
+      className="absolute top-full left-80 mt-2
+                 flex items-center
+                 bg-[#0a0a0a] text-white 
+                 rounded-xl shadow-lg
+                 px-6 py-4 
+                 w-[900px] h-[118px]
+                 z-50"
+    >
+      <input
+        type="text"
+        placeholder="Search movies, shows, events..."
+        className="flex-1 bg-transparent outline-none 
+                   text-white placeholder-gray-400 
+                   rounded-2xl border-2 border-white
+                   text-[16px] font-normal px-4 py-2"
+      />
+
+      <button
+        onClick={() => setIsSearchOpen(false)}
+        className="ml-4 text-gray-300 hover:text-white text-2xl"
+      >
+        ✕
+      </button>
+    </div>
+  </>
+)}
       </div>
     </nav>
   );

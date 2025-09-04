@@ -23,7 +23,7 @@ export default function Slider() {
   ];
 
   return (
-    <div className="relative w-full h-[70vh] group">
+    <div className="relative w-full h-[80vh] group">
       <Swiper
         modules={[Navigation, Autoplay]}
         navigation
