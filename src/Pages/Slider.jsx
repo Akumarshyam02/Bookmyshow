@@ -5,22 +5,22 @@ import { Navigation, Autoplay } from "swiper/modules";
 
 export default function Slider() {
   const banners = [
-    {
-      img: "https://image.tmdb.org/t/p/original/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
-      title: "Avatar: The Way of Water",
-      desc: "Experience the breathtaking world of Pandora in stunning detail.",
-    },
-    {
-      img: "https://image.tmdb.org/t/p/original/5hKlKh62yLrbvOXXeciyCWxXetj.jpg",
-      title: "Avengers: Endgame",
-      desc: "The epic finale of the Infinity Saga. Heroes assemble!",
-    },
-    {
-      img: "https://image.tmdb.org/t/p/original/8YFL5QQVPy3AgrEQxNYVSgiPEbe.jpg",
-      title: "Spider-Man: No Way Home",
-      desc: "Spider-Man faces his biggest challenge yet across the multiverse.",
-    },
-  ];
+  {
+    img: "https://image.tmdb.org/t/p/original/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg", // Avatar 2
+    title: "Avatar: The Way of Water",
+    desc: "Experience the breathtaking world of Pandora in stunning detail.",
+  },
+  {
+    img: "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg", // Avengers Endgame
+    title: "Avengers: Endgame",
+    desc: "The epic finale of the Infinity Saga. Heroes assemble!",
+  },
+  {
+    img: "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", // Spider-Man No Way Home
+    title: "Spider-Man: No Way Home",
+    desc: "Spider-Man faces his biggest challenge yet across the multiverse.",
+  },
+];
 
   return (
     <div className="relative w-full h-[80vh] group">
