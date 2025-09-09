@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Search, User, Menu, ChevronDown } from "lucide-react";
+import { Search, User, Menu, ChevronDown,MapPin } from "lucide-react";
 import { FaBell } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-
+import LocationModal from "./LocationModal";
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("For You");
   const menuItems = [
@@ -17,6 +17,11 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileScrolled, setMobileScrolled] = useState(false);
+    
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("Mumbai");
+
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,7 +109,7 @@ const Navbar = () => {
                 className={`px-2 py-2 rounded cursor-pointer transition 
                   ${
                     activeTab === item
-                      ? "bg-[#4e5a65] text-white"
+                      ? "bg-gradient-to-r from-white/50 to-[#788694]  text-white"
                       : "hover:bg-white hover:text-black"
                   }`}
               >
@@ -115,23 +120,49 @@ const Navbar = () => {
         </div>
 
         
-        <div className="flex items-center space-x-5 font-medium">
-          <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="hover:bg-white hover:text-black px-2 py-2 rounded cursor-pointer"
-          >
-            <Search size={22} />
-          </button>
+        <div className="flex items-center space-x-5 font-medium relative">
+          <div className="relative">
+        <button
+         onClick={() => setOpen(true)}
+          className="flex items-center gap-1 px-3 py-2 text-white transition"
+        >
+          <MapPin className="w-4 h-4 text-[#b9b9b9]" />
+          <span>{selected}</span>
+          <ChevronDown className="w-4 h-4 text-white" />
+        </button>
+<LocationModal open={open} onClose={() => setOpen(false)} />
+    
+      </div>
+      
+      <button
+        onClick={() => setIsSearchOpen(!isSearchOpen)}
+        className="p-2 rounded-full hover:bg-white hover:text-black transition duration-300 cursor-pointer"
+      >
+        <Search size={22} />
+      </button>
 
-          <button className="bg-gradient-to-r from-[#1A98FF] to-[#4facfe] text-white w-10 h-10 flex items-center justify-center rounded-full cursor-pointer">
-            <User size={22} />
-          </button>
+      {/* 👤 User Button */}
+      <button
+        className="flex items-center justify-center w-10 h-10 
+             bg-gradient-to-r from-[#1A98FF] to-[#4facfe] 
+             rounded-full cursor-pointer 
+             transition-all duration-300 
+             hover:bg-white hover:border-4 hover:border-white"
+      >
+        <User
+          size={22}
+          className="text-white hover:text-black transition-colors duration-300"
+        />
+      </button>
 
-          <button className="hover:bg-[rgb(26,152,255)] hover:text-black px-2 py-2 rounded cursor-pointer">
-            <Menu size={22} />
-          </button>
-        </div>
+      {/* 📍 Location Dropdown */}
+      
 
+      {/* ☰ Menu Button */}
+      <button className="hover:bg-white hover:text-black px-2 py-2 rounded-4xl cursor-pointer">
+        <Menu size={22} />
+      </button>
+    </div>
         
         {isSearchOpen && (
           <>
